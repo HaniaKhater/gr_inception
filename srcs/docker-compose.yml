@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    networks:
+      - inception
+    ports:
+      - "443:443"
+
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - inception
+    expose:
+      - 3306
+
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    env_file:
+      - .env
+    networks:
+      - inception
+    expose:
+      - 9000
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hania/data/mariadb
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hania/data/wordpress
+
+networks:
+  inception:
+    driver: bridge

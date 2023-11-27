@@ -7,10 +7,10 @@ datadir = /var/lib/mysql
 socket = /run/mysqld/mysqld.socket
 
 # Accept connections from any IP address
-bind_address = *
+bind_address=*
 
 # Port to listen on for MySQL/MariaDB connections (default)
-port = 3306
+port=3306
 
 # User under which the MariaDB process runs
 user = mysql
