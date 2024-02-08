@@ -1,4 +1,6 @@
 all:
+	sudo mkdir -p /home/hkhater/data/mariadb
+	sudo mkdir -p /home/hkhater/data/wordpress
 	sudo docker compose -f ./srcs/docker-compose.yml up #-d
 
 clean:
@@ -6,12 +8,12 @@ clean:
 	sudo docker system prune -af
 
 fclean: clean
-	@if [ -d "/home/hania/data/wordpress" ]; then \
-	sudo rm -rf /home/hania/data/wordpress/*; \
+	@if [ -d "/home/hkhater/data/wordpress" ]; then \
+	sudo rm -rf /home/hkhater/data/wordpress/*; \
 	fi;
 
-	@if [ -d "/home/hania/data/mariadb" ]; then \
-	sudo rm -rf /home/hania/data/mariadb/*; \
+	@if [ -d "/home/hkhater/data/mariadb" ]; then \
+	sudo rm -rf /home/hkhater/data/mariadb/*; \
 	fi;
 
 re: fclean all
