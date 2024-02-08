@@ -2,9 +2,7 @@ FROM debian:buster
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y wget
-    #apt-get clean && \
-    #rm -rf /var/lib/apt/lists/*
+    apt-get install -y wget 
 
 # Download and extract the latest WordPress
 RUN wget https://wordpress.org/latest.tar.gz -P /var/www && \
