@@ -1,6 +1,7 @@
 all:
 	sudo mkdir -p /home/hania/data/mariadb
 	sudo mkdir -p /home/hania/data/wordpress
+	sudo mkdir -p /home/hania/data/kuma
 	sudo docker compose -f ./srcs/docker-compose.yml up #-d
 
 clean:

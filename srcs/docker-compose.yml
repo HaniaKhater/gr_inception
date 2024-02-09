@@ -48,6 +48,21 @@ services:
     expose:
       - 9000
 
+  kuma:
+    container_name: kuma
+    restart: unless-stopped
+    build:
+      context: requirements/bonus/kuma
+      dockerfile: Dockerfile
+    image: kuma:inception
+    volumes:
+      - www-kuma:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 3001:3001
+    networks:
+      - inception
+
 volumes:
   mariadb_data:
     driver: local
@@ -61,6 +76,13 @@ volumes:
       type: none
       o: bind
       device: /home/hania/data/wordpress
+  www-kuma:
+    name: www-kuma
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/hania/data/kuma
 
 networks:
   inception:
