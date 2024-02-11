@@ -1,29 +1,26 @@
 all:
-		@if [ -d /home/${USER}/data/mariadb ]; then \
-    	echo "[✅] The mariadb directory in data already exists"; \
+		@if [ ! -f srcs/.env ]; then \
+		echo "❌ The neccessary .env file is not in srcs as expected/"; \
+	fi
+		@if [ -d /home/hania/data/mariadb ]; then \
+    	echo "✅ The mariadb directory in data already exists"; \
     else \
-    	sudo mkdir -p /home/${USER}/data/mariadb; \
-		echo "[✅] The mariadb directory in data has just been created"; \
+    	sudo mkdir -p /home/hania/data/mariadb; \
+		echo "✅ The mariadb directory in data has just been created"; \
     fi
-	@if [ -d /home/${USER}/data/wordpress ]; then \
-    	echo "[✅] The wordpress directory in data already exists"; \
+	@if [ -d /home/hania/data/wordpress ]; then \
+    	echo "✅ The wordpress directory in data already exists"; \
     else \
-    	sudo mkdir -p /home/${USER}/data/wordpress; \
-		echo "[✅] The wordpress directory in data has just been created"; \
+    	sudo mkdir -p /home/hania/data/wordpress; \
+		echo "✅ The wordpress directory in data has just been created"; \
     fi
-	# @if [ -d /home/${USER}/data/adminer ]; then \
-    # 	echo "[✅] The adminer directory in data already exists"; \
-    # else \
-    # 	sudo mkdir -p /home/${USER}/data/adminer; \
-	# 	echo "[✅] The adminer directory in data has just been created"; \
-    # fi
-	@if [ -d /home/${USER}/data/kuma ]; then \
-    	echo "[✅] The kuma directory in data already exists"; \
+	@if [ -d /home/hania/data/kuma ]; then \
+    	echo "✅ The kuma directory in data already exists"; \
     else \
-    	sudo mkdir -p /home/${USER}/data/kuma; \
-		echo "[✅] The kuma directory in data has just been created"; \
+    	sudo mkdir -p /home/hania/data/kuma; \
+		echo "✅ The kuma directory in data has just been created"; \
     fi
-	sudo docker compose -f ./srcs/docker-compose.yml up #-d
+	sudo docker compose -f ./srcs/docker-compose.yml up --build #-d
 
 clean:
 	sudo docker compose -f ./srcs/docker-compose.yml down --rmi all -v

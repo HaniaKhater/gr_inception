@@ -2,7 +2,7 @@ FROM debian:buster
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y wget 
+    apt-get install -y wget
 
 # Download and extract the latest WordPress
 RUN wget https://wordpress.org/latest.tar.gz -P /var/www && \
@@ -18,6 +18,8 @@ COPY conf/page.html /var/www/wordpress
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp-cli.phar && \
     mv wp-cli.phar /usr/local/bin/wp
+
+RUN chown -R www-data:www-data /var/www/wordpress
 
 # Copy the script for WordPress setup
 COPY tools/wpscript.sh .

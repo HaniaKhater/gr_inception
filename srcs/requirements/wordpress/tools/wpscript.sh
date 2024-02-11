@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Allow other services to start
-sleep 10
+sleep 5
 
 cd /var/www/wordpress
 
-# Check if wp-config.php does not exist (indicating WordPress is not configured)
+# Check if WordPress is not configured
 if [ ! -e /var/www/wordpress/wp-config.php ]; then
 
 wp config create --allow-root \
