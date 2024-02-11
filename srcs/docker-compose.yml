@@ -93,20 +93,20 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/hania/data/mariadb
+      device: /home/hkhater/data/mariadb
   wordpress_data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/hania/data/wordpress
+      device: /home/hkhater/data/wordpress
   www-kuma:
     name: www-kuma
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/hania/data/kuma
+      device: /home/hkhater/data/kuma
 
 networks:
   inception:
